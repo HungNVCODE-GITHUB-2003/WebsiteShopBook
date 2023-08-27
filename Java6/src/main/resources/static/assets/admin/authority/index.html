@@ -1,0 +1,40 @@
+<div class="container-fluid" sty>
+
+	<!-- DataTales Example -->
+	<div class="card shadow mb-4">
+		<div class="card-header py-3">
+			<div class="card-header bg-primary">
+				<h3 class="text-white p-0 m-0">PHÂN QUYỀN NGƯỜI SỬ DỤNG</h3>
+			</div>
+		</div>
+		<div class="card-body">
+			<div class="table-responsive">
+				<table class="table table-bordered" id="dataTable" width="100%"
+					cellspacing="0">
+					<thead>
+						<tr>
+							<th></th>
+							<th ng-repeat="role in roles" class="text-center">{{role.name}}</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr ng-repeat="acc in admins">
+							<td>{{acc.fullname}}</td>
+
+							<th ng-repeat="role in roles" class="text-center"><input
+								ng-checked="authority_of(acc,role)"
+								ng-click="authority_changed(acc,role)" type="checkbox">
+							</th>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+

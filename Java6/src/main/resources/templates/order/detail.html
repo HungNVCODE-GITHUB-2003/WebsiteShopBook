@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/layout :: dynamic(~{::body})}">
+
+<head>
+    <meta charset="utf-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+    <main th:object="${order}">
+        <div class="card">
+            <div class="card-header" th:text="#{new.ORDERINFOMATION}">ORDER INFOMATION</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <div th:text="#{new.OrderNumber}">Order Number</div>
+                        <input th:field="*{id}" class="form-control" readonly>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <div th:text="#{new.Purchaser}">Purchaser:</div>
+                        <input th:field="*{account.username}" class="form-control" readonly>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <div th:text="#{new.PurchasedDate}">Purchased Date:</div>
+                        <input th:field="*{date}" class="form-control" readonly>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <label th:text="#{new.ShippingAddress}">Shipping Address:</label>
+                        <textarea th:field="*{address}" class="form-control" readonly></textarea>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <div>State:</div>
+
+                        <input style="color: blue;" th:field="*{state.name}" class="form-control " readonly>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" th:text="#{new.ORDERLINES}">
+                ORDER LINES
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th th:text="#{new.Name}">Name</th>
+                        <th th:text="#{new.Price}">Price</th>
+                        <th th:text="#{new.Quantity}">Quantity</th>
+                        <th th:text="#{new.Amount}">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="detail: *{orderDetail}" th:object="${detail}">
+                        <td>[[*{book.id}]]</td>
+                        <th><img th:src="@{|/assets/images/*{book.image}|}" alt="Book Image" / style="width: 100px;"></th>
+                        <td>[[*{book.name}]]</td>
+                        <td>[[*{#numbers.formatDecimal(price, 0, 'COMMA', 0, 'POINT')}]]đ</td>
+                        <td>[[*{quantity}]]</td>
+                        <td>[[*{#numbers.formatDecimal(price * quantity, 0, 'COMMA', 0, 'POINT')}]]đ</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</body>
+
+</html>

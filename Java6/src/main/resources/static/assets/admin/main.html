@@ -1,0 +1,117 @@
+
+	<div class="container-fluid my-5">
+		<!-- Page Heading -->
+		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+			<h1 class="h3 mb-0 text-gray-800">Trang Thống Kê</h1>
+		</div>
+		<!-- Content Row -->
+		<div class="row">
+
+			<!-- Earnings (Monthly) Card Example -->
+			<div class="col-xl-3 col-md-6 mb-4">
+				<div class="card border-left-primary shadow h-100 py-2">
+					<div class="card-body">
+						<div class="row no-gutters align-items-center">
+							<div class="col mr-2">
+								<div
+									class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+									Tổng Doanh Thu</div>
+								<div class="h5 mb-0 font-weight-bold text-gray-800">
+									<b
+										th:text="${#numbers.formatDecimal(totalRevenue,0,'POINT',2,'COMMA')}"></b>
+								</div>
+							</div>
+							<div class="col-auto">
+								<i class="fa-solid fa-dong-sign fa-2x text-gray-300"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Earnings (Monthly) Card Example -->
+			<div class="col-xl-3 col-md-6 mb-4">
+				<div class="card border-left-success shadow h-100 py-2">
+					<div class="card-body">
+						<div class="row no-gutters align-items-center">
+							<div class="col mr-2">
+								<div
+									class="text-xs font-weight-bold text-success text-uppercase mb-1">
+									Đơn Hàng Mới</div>
+								<div class="h5 mb-0 font-weight-bold text-gray-800"
+									th:text="${totalNewOrders}"></div>
+							</div>
+							<div class="col-auto">
+								<i class="fa-solid fa-comment-plus fa-2x text-gray-300"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Earnings (Monthly) Card Example -->
+			<div class="col-xl-3 col-md-6 mb-4">
+				<div class="card border-left-info shadow h-100 py-2">
+					<div class="card-body">
+						<div class="row no-gutters align-items-center">
+							<div class="col mr-2">
+								<div
+									class="text-xs font-weight-bold text-info text-uppercase mb-1">Tổng
+									Đơn Hàng</div>
+								<div class="row no-gutters align-items-center">
+									<div class="col-auto">
+										<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
+											th:text="${totalOrders}"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-auto">
+								<i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Pending Requests Card Example -->
+			<div class="col-xl-3 col-md-6 mb-4">
+				<div class="card border-left-warning shadow h-100 py-2">
+					<div class="card-body">
+						<div class="row no-gutters align-items-center">
+							<div class="col mr-2">
+								<div
+									class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+									Đơn Hàng Đã Giao</div>
+								<div class="h5 mb-0 font-weight-bold text-gray-800"
+									th:text="${totalOrdersDelivered}"></div>
+							</div>
+							<div class="col-auto">
+								<i class="fas fa-comments fa-2x text-gray-300"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Chart -->
+		<div class="row my-3">
+			<div class="col-md-12">
+				<div class="card card-gray">
+					<div class="card-header">
+						<h3 class="card-title">Doanh Thu 12 Tháng Gần Đây</h3>
+					</div>
+					<!-- /.card-header -->
+					<div class="card-body">
+						<canvas id="myChart" style="min-height: 350px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
+					</div>
+					<!-- /.card-body -->
+				</div>
+				<!-- /.card -->
+			</div>
+			<!-- /.col -->
+		</div>
+	</div>
+	<!-- /.container-fluid -->
+
+</body>
+</html>

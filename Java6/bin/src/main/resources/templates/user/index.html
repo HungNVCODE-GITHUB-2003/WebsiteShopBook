@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org"
+	th:replace="~{/layout/layout::dynamic(~{::body})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!--pos home section-->
+	<div class="pos_home_section">
+		<div class="row">
+			<!--banner slider start-->
+			<div class="col-lg-3 col-md-8 col-12">
+				<!--sidebar banner-->
+				<div class="sidebar_widget banner mb-35">
+					<div class="banner_img mb-35">
+						<a href="#"><img src="assets\img\banner\banner5.jpg" alt=""></a>
+					</div>
+					<div class="banner_img">
+						<a href="#"><img src="assets\img\banner\banner6.jpg" alt=""></a>
+					</div>
+				</div>
+				<!--sidebar banner end-->
+			</div>
+
+			<div class="col-lg-9 col-md-12">
+				<!--banner slider start-->
+				<div class="banner_slider slider_1">
+					<div class="slider_active owl-carousel">
+						<div class="single_slider"
+							style="background-image: url(assets/img/slider/slider_1.jpg)">
+							<div class="slider_content">
+								<div class="slider_content_inner">
+									<h1>Women's Fashion</h1>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+										elit.</p>
+									<a href="#">shop now</a>
+								</div>
+							</div>
+						</div>
+						<div class="single_slider"
+							style="background-image: url(assets/img/slider/slider_2.jpg)">
+							<div class="slider_content">
+								<div class="slider_content_inner">
+									<h1>New Collection</h1>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+										elit.</p>
+									<a href="#">shop now</a>
+								</div>
+							</div>
+						</div>
+						<div class="single_slider"
+							style="background-image: url(assets/img/slider/slider_3.jpg)">
+							<div class="slider_content">
+								<div class="slider_content_inner">
+									<h1>Best Collection</h1>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+										elit.</p>
+									<a href="#">shop now</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--banner slider start-->
+			</div>
+		</div>
+		<!--new product area start-->
+		<div class="new_product_area product_two">
+			<div class="row">
+				<div class="col-12">
+					<div class="block_title">
+						<h3>New Products</h3>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="single_p_active owl-carousel">
+					<div th:each="book : ${books}" class="col-lg-3">
+						<div class="single_product">
+							<div class="product_thumb">
+								<a href="single-product.html"><img th:src="@{|/assets/images/${book.image}|}"
+									th:alt="${book.Name}"></a>
+								<div class="img_icone">
+									<img src="assets\img\cart\span-new.png" alt="">
+								</div>
+								<div class="product_action">
+									<a href="#"> <i class="fa fa-shopping-cart"></i> Add to
+										cart
+									</a>
+								</div>
+							</div>
+							<div class="product_content">
+								<span class="product_price" th:text="${book.Price}"></span>
+								<h3 class="product_title">
+									<a href="single-product.html" th:text="${book.Name}"></a>
+								</h3>
+							</div>
+							<!-- Inside the <div class="single_product"> element -->
+							<div class="product_info">
+								<ul>
+									<li><a href="#" title="Add to Wishlist">Add to
+											Wishlist</a></li>
+									<!-- Update the th:href to correctly pass the productId parameter -->
+									<li><a
+										th:href="@{|/product/detail/${book.id}|}" 
+										title="Quick view">View Detail</a></li>
+								</ul>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!--new product area start-->
+
+		<!--banner area start-->
+		<div class="banner_area banner_two">
+			<div class="row">
+				<div class="col-lg-4 col-md-6">
+					<div class="single_banner">
+						<a href="#"><img src="assets\img\banner\banner7.jpg" alt=""></a>
+						<div class="banner_title">
+							<p>
+								Up to <span> 40%</span> off
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="single_banner">
+						<a href="#"><img src="assets\img\banner\banner8.jpg" alt=""></a>
+						<div class="banner_title title_2">
+							<p>
+								sale off <span> 30%</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="single_banner">
+						<a href="#"><img src="assets\img\banner\banner11.jpg" alt=""></a>
+						<div class="banner_title title_3">
+							<p>
+								sale off <span> 30%</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--banner area end-->
+
+		<div class="new_product_area product_two">
+			<div class="row">
+				<div class="col-12">
+					<div class="block_title">
+						<h3>New Products</h3>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="single_p_active owl-carousel">
+					<div th:each="book : ${books}" class="col-lg-3">
+						<div class="single_product">
+							<div class="product_thumb">
+								<a href="single-product.html"><img th:src="@{|/assets/images/${book.image}|}"
+									th:alt="${book.Name}"></a>
+								<div class="img_icone">
+									<img src="assets\img\cart\span-new.png" alt="">
+								</div>
+								<div class="product_action">
+									<a href="#"> <i class="fa fa-shopping-cart"></i> Add to
+										cart
+									</a>
+								</div>
+							</div>
+							<div class="product_content">
+								<span class="product_price" th:text="${book.Price}"></span>
+								<h3 class="product_title">
+									<a href="single-product.html" th:text="${book.Name}"></a>
+								</h3>
+							</div>
+							<!-- Inside the <div class="single_product"> element -->
+							<div class="product_info">
+								<ul>
+									<li><a href="#" title="Add to Wishlist">Add to
+											Wishlist</a></li>
+									<!-- Update the th:href to correctly pass the productId parameter -->
+									<li><a
+										th:href="@{|/product/detail/${book.id}|}"
+										title="Quick view">View Detail</a></li>
+								</ul>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!--new product area start-->
+
+		<!--blog area start-->
+		<div class="blog_area blog_two">
+			<div class="row">
+				<div class="col-lg-4 col-md-6">
+					<div class="single_blog">
+						<div class="blog_thumb">
+							<a href="blog-details.html"><img
+								src="assets\img\blog\blog3.jpg" alt=""></a>
+						</div>
+						<div class="blog_content">
+							<div class="blog_post">
+								<ul>
+									<li><a href="#">Tech</a></li>
+								</ul>
+							</div>
+							<h3>
+								<a href="blog-details.html">When an unknown took a galley of
+									type.</a>
+							</h3>
+							<p>Distinctively simplify dynamic resources whereas
+								prospective core competencies. Objectively pursue
+								multidisciplinary human capital for interoperable.</p>
+							<div class="post_footer">
+								<div class="post_meta">
+									<ul>
+										<li>Jun 20, 2018</li>
+										<li>3 Comments</li>
+									</ul>
+								</div>
+								<div class="Read_more">
+									<a href="blog-details.html">Read more <i
+										class="fa fa-angle-double-right"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="single_blog">
+						<div class="blog_thumb">
+							<a href="blog-details.html"><img
+								src="assets\img\blog\blog4.jpg" alt=""></a>
+						</div>
+						<div class="blog_content">
+							<div class="blog_post">
+								<ul>
+									<li><a href="#">Men</a></li>
+								</ul>
+							</div>
+							<h3>
+								<a href="blog-details.html">When an unknown took a galley of
+									type.</a>
+							</h3>
+							<p>Distinctively simplify dynamic resources whereas
+								prospective core competencies. Objectively pursue
+								multidisciplinary human capital for interoperable.</p>
+							<div class="post_footer">
+								<div class="post_meta">
+									<ul>
+										<li>Jun 20, 2018</li>
+										<li>3 Comments</li>
+									</ul>
+								</div>
+								<div class="Read_more">
+									<a href="blog-details.html">Read more <i
+										class="fa fa-angle-double-right"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="single_blog">
+						<div class="blog_thumb">
+							<a href="blog-details.html"><img
+								src="assets\img\blog\blog1.jpg" alt=""></a>
+						</div>
+						<div class="blog_content">
+							<div class="blog_post">
+								<ul>
+									<li><a href="#">Women</a></li>
+								</ul>
+							</div>
+							<h3>
+								<a href="blog-details.html">When an unknown took a galley of
+									type.</a>
+							</h3>
+							<p>Distinctively simplify dynamic resources whereas
+								prospective core competencies. Objectively pursue
+								multidisciplinary human capital for interoperable.</p>
+							<div class="post_footer">
+								<div class="post_meta">
+									<ul>
+										<li>Jun 20, 2018</li>
+										<li>3 Comments</li>
+									</ul>
+								</div>
+								<div class="Read_more">
+									<a href="blog-details.html">Read more <i
+										class="fa fa-angle-double-right"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!--blog area end-->
+
+		<!--brand logo strat-->
+		<div class="brand_logo brand_two">
+			<div class="block_title">
+				<h3>Brands</h3>
+			</div>
+			<div class="row">
+				<div class="brand_active owl-carousel">
+					<div class="col-lg-2">
+						<div class="single_brand">
+							<a href="#"><img src="assets\img\brand\brand1.jpg" alt=""></a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!--brand logo end-->
+	</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<ul class="nav nav-tabs" style="font-variant: small-caps;">
+  <li> <a class="nav-link" data-toggle="tab" data-target="#edit" href="">Products Edition</a> </li>
+  <li class=""> <a class="nav-link active" data-toggle="tab" data-target="#list" href="">List of Products</a> </li>
+</ul>
+<div class="tab-content">
+	<div id="edit" class="tab-pane fade">
+		<div ng-include="'/assets/admin/genres/_form.html'"></div>
+	</div>
+	
+	<div id="list" class="tab-pane fade in active">
+		<div ng-include="'/assets/admin/genres/_table.html'"></div>
+	</div>
+</div>

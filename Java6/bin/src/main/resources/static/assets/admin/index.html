@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java 6 Store Administation</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+ 
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+</head>
+
+<body class="container-fluid" ng-app="admin-app" >
+    <header class="row">
+        <h1 class="alert alert-success">Website Administration</h1>
+     	
+    </header>
+    
+    <div class="row">
+       	<nav class="navbar navbar-inverse" style="font-variant: small-caps;">
+       		<div class="container-fluid">
+       			<ul class="nav navbar-nav">
+       				<li><a href="/">Home</a></li>
+       				<li><a href="#!product">Products Management</a></li>
+       				<li><a href="#!genres">Genres Management</a></li>
+       				<li><a href="#!account">Account Management</a></li>
+       				<li><a href="#!order">Order Management</a></li>
+       				<li><a href="#!authorize">Authorizing Management</a></li>
+       				<li><a href="/security/logoff">Sign Out</a></li>
+       			</ul>
+       		</div>
+    	</nav>
+    </div>
+    <main>
+    	<p class="ng-view">
+    </main>
+    <footer class="row">
+	    <div  class="panel panel-default">
+			<div class="panel-body text-center">
+				 <h1>FPT Polytechnic &copy; 2023.ALL rights reserved.</h1>
+			</div>
+		</div>
+      
+    </footer>
+    
+    <!-- User-defined Scripts -->
+    <script src="/assets/admin/admin-app.js"></script>
+    <script src="/assets/admin/product/product-ctrl.js"></script>
+    <script src="/assets/admin/genres/genres-ctrl.js"></script>
+    <script src="/assets/admin/account/account-ctrl.js"></script>
+    <script src="/assets/admin/authority/authority-ctrl.js"></script>
+	<script src="/assets/admin/order/order-ctrl.js"></script>
+
+	
+</body>
+
+</html>

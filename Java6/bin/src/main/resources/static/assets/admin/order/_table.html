@@ -1,0 +1,52 @@
+<div class="panel panel-default">
+	<div class="panel-heading">ORDERS LIST</div>
+	<table class="table table-bordered " >
+		<thead class="bg-success"  style="font-variant: small-caps;">
+			<tr>
+				<th>Id</th>
+				<th>Username</th>
+				<th>Date</th>
+				<th>Shipper_id</th>
+				<th>State</th>
+				<th>Action</th>
+				<th>orderdetail</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in pager.items ">
+				<th>{{item.id}}</th>
+				<th>{{item.account.username}}</th><!-- {{item.accounts.username}}-->
+				<th>{{item.date | date:'dd-MM-yyyy'}}</th>
+				<th>{{item.shipper.id}}</th>
+				<th>{{item.state.name}}</th>
+				<td>
+					<div class="btn-group btn-group-xs">
+						<button ng-click="edit(item)" class="btn btn-warning glyphicon glyphicon-edit"></button>
+						<button ng-click="delete(item)" class="btn btn-danger glyphicon glyphicon-trash"></button>
+					</div>
+
+				</td>
+				<th> <a ng-click="edit(item)">Order details</a> </th>
+			</tr>
+		</tbody>
+
+	</table>
+
+	<div class="panel-footer text-center">
+		<button ng-click="pager.first()" class="btn btn-danger">
+			<b class="glyphicon glyphicon-hand-up"></b> First 
+		</button>
+		<button ng-click="pager.prev()" class="btn btn-primary">
+			<b class="glyphicon glyphicon-hand-left"></b> prev
+		</button>
+		<button class="btn btn-success">
+			{{pager.page + 1}} of {{pager.count}}
+		</button>
+		<button ng-click="pager.next()" class="btn btn-primary">
+			<b class="glyphicon glyphicon-hand-right"></b> next
+		</button>
+		<button ng-click="pager.last()" class="btn btn-info">
+			<b class="glyphicon glyphicon-hand-down"></b> last
+		</button>
+	</div>
+</div>

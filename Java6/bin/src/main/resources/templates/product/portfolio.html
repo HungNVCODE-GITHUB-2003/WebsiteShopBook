@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/layout.html :: dynamic(~{::body})}">
+<body>
+
+
+	<!--portfolio section -->
+	<div class="portfolio_section_area">
+		<div class="portfolio_button">
+			<div class="row">
+				<div class="col-12">
+
+					
+					<button data-filter="*">Văn Học</button>
+					<button data-filter=".computers">Kinh Tế</button>
+					<button data-filter=".general">Tâm lý kỹ năng sống</button>
+					<button data-filter=".hipster">Nuôi dạy con</button>
+					<button data-filter=".food">Sách thiếu nhi</button>
+					<button data-filter=".food">Tiểu sử hồi ký</button>
+					<button data-filter=".food">Sách giáo khoa</button>
+					<button data-filter=".food">Sách học ngoại ngữ</button>
+				</div>
+			</div>
+		</div>
+		<div class="row portfolio_gallery">
+			<div th:each="p:${items}"
+				class="col-lg-3 col-md-4 col-sm-6 gird_item computers general">
+				<div class="single_portfolio_inner">
+					<div class="portfolio_thumb">
+						<a href="#"><img th:src="@{|/assets/images/${p.image}|}"
+							alt=""></a>
+						<div class="portfolio_popup">
+							<a class="port_popup" th:href="@{|/assets/images/${p.image}|}"><i
+								class="fa fa-search"></i></a>
+						</div>
+						<div class="portfolio_link">
+							<a th:href="@{|/product/detail/${p.id}|}"><i
+								class="fa fa-link"></i></a>
+						</div>
+					</div>
+					<div class="portfolio__content">
+						<a th:utext="${p.name}"></a>
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	</div>
+	<!--portfolio section end-->
+
+
+	</div>
+	<!--pos page inner end-->
+	</div>
+	</div>
+	<!--pos page end-->
+
+
+</body>
+</html>

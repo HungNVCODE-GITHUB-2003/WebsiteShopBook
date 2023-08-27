@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:fragment="navbar" class="header_area">
+		<!--header top-->
+		<div class="header_top">
+			<div class="row align-items-center">
+				<div class="col-lg-6 col-md-6">
+					<div class="switcher">
+						<ul>
+							<li class="languages"><a href="#"><img
+									src="assets\img\logo\fontlogo.jpg" alt=""> English <i
+									class="fa fa-angle-down"></i></a>
+								<ul class="dropdown_languages">
+									<li><a href="#"><img
+											src="assets\img\logo\fontlogo.jpg" alt=""> English</a></li>
+									<li><a href="#"><img
+											src="assets\img\logo\fontlogo2.jpg" alt=""> French </a></li>
+								</ul></li>
+
+							<li class="currency"><a href="#"> Currency : $ <i
+									class="fa fa-angle-down"></i></a>
+								<ul class="dropdown_currency">
+									<li><a href="#"> Dollar (USD)</a></li>
+									<li><a href="#"> Euro (EUR) </a></li>
+								</ul></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="header_links">
+						<ul>
+							<li><a th:href="@{/product/contact}" title="Contact">Contact</a></li>
+							<li><a th:href="@{/index/wishlist}" title="wishlist">My wishlist</a></li>
+							<li><a th:href="@{/index/profile}" title="My account">Profile</a></li>
+							<li><a th:href="@{/cart/view}" title="My cart">My cart</a></li>
+							<li><a th:href="@{/index/login}" title="Login">Login</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--header top end-->
+
+		<!--header middel-->
+		<div class="header_middel">
+			<div class="row align-items-center">
+				<!--logo start-->
+				<div class="col-lg-3 col-md-3">
+					<div class="logo">
+						<a href="index.html"><img src="assets\img\logo\logo.jpg.png"
+							alt=""></a>
+					</div>
+				</div>
+				<!--logo end-->
+				<div class="col-lg-9 col-md-9">
+					<div class="header_right_info">
+						<div class="search_bar">
+							<form action="#">
+								<input placeholder="Search..." type="text">
+								<button type="submit">
+									<i class="fa fa-search"></i>
+								</button>
+							</form>
+						</div>
+						<div class="shopping_cart">
+							<a th:href="@{/cart/view}"><i class="fa fa-shopping-cart"></i> {{cart.count}} item x ${{cart.amount | number:2}}<i class="fa fa-angle-down"></i></a>
+							<!--mini cart-->
+							<div class="mini_cart">
+								<div class="cart_item">
+									<div class="cart_img">
+										<a href="#"><img src="assets\img\cart\cart.jpg" alt=""></a>
+									</div>
+									<div class="cart_info">
+										<a href="#">lorem ipsum dolor</a> <span class="cart_price">$115.00</span>
+										<span class="quantity">Qty: 1</span>
+									</div>
+									<div class="cart_remove">
+										<a title="Remove this item" href="#"><i
+											class="fa fa-times-circle"></i></a>
+									</div>
+								</div>
+								<div class="cart_item">
+									<div class="cart_img">
+										<a href="#"><img src="assets\img\cart\cart2.jpg" alt=""></a>
+									</div>
+									<div class="cart_info">
+										<a href="#">Quisque ornare dui</a> <span class="cart_price">$105.00</span>
+										<span class="quantity">Qty: 1</span>
+									</div>
+									<div class="cart_remove">
+										<a title="Remove this item" href="#"><i
+											class="fa fa-times-circle"></i></a>
+									</div>
+								</div>
+								<div class="shipping_price">
+									<span> Shipping </span> <span> $7.00 </span>
+								</div>
+								<div class="total_price">
+									<span> total </span> <span class="prices"> $227.00 </span>
+								</div>
+								<div class="cart_button">
+									<a href="checkout.html"> Check out</a>
+								</div>
+							</div>
+							<!--mini cart end-->
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--header middel end-->
+		<div class="header_bottom">
+			<div class="row">
+				<div class="col-12">
+					<div th:insert="~{/layout/_menu.html::menu}"></div>
+				</div> 
+			</div>
+		</div>
+	</div>
+	<!--header end -->
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/layout.html :: dynamic(~{::body})}">
+    <body>
+    
+    <!--breadcrumbs area start-->
+	<div class="breadcrumbs_area">
+		<div class="row">
+			<div class="col-12">
+				<div class="breadcrumb_content">
+					<ul>
+						<li><a href="index.html">home</a></li>
+						<li><i class="fa fa-angle-right"></i></li>
+						<li>blog</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--breadcrumbs area end-->
+    
+            <!--blog area start-->
+            <div class="blog_area">
+                <div class="row">   
+                    <div th:each="p:${items}" class="col-lg-4 col-md-6">
+                        <div  class="single_blog">
+                            <div class="blog_thumb">
+                                <a href="blog-details.html"><img th:src="@{|/assets/images/${p.image}|}"
+													alt=""></a>
+                            </div>
+                            <div class="blog_content">
+                                <div class="blog_post">
+                                    <!-- <ul>
+                                        <li>
+                                            <a  href="#" >Tech</a>
+                                        </li>
+                                    </ul> -->
+                                </div>
+                                <h3><a th:utext="${p.name}" href="blog-details.html"></a></h3>
+                                <p th:utext="*{p.Description}"></p>
+                                <div class="post_footer">
+                                    <div class="post_meta">
+                                        <ul>
+                                            <li th:utext="*{p.Publication_date}"></li>
+                                            <li th:text="#{blog.Comments}">3 Comments</li>
+                                        </ul>
+                                    </div>
+                                    <div class="Read_more">
+                                        <a th:href="@{|/product/detail/${p.id}|}" th:text="#{blog.readmore}">Read more  <i class="fa fa-angle-double-right"></i></a>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+       
+                </div>    
+            </div>
+          
+            
+                  
+      
+		
+		
+    </body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<!-- Trong phần <head> của trang HTML -->
+	<style>
+		.mini_cart {
+			display: none;
+			/* Ẩn modal mini ban đầu */
+		}
+	</style>
+
+</head>
+
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+	<div th:fragment="navbar" class="header_area">
+		<!--header top-->
+		<div class="header_top">
+			<div class="row align-items-center">
+				<div class="col-lg-6 col-md-6">
+					<div class="switcher float-left d-inline-flex">
+						<li class="languages py-1"> 
+							<a href=""><img src="assets\img\logo\fontlogo4.jpg" alt="" th:text=" #{nav.lang}"> <i class="fa fa-angle-down"></i></a>
+							
+								<ul class="dropdown_languages">
+									<li><a onclick="changeLanguage('vi')">
+										<img src="assets\img\logo\fontlogo3.jpg.png" th:text="#{nav.vi}" ></a></li>
+									<li><a onclick="changeLanguage('en')">
+										<img src="assets\img\logo\fontlogo.jpg"  th:text="#{nav.en}"></a></li>
+								</ul>
+							</li>
+						<ul sec:authorize="isAuthenticated()">
+							<li>
+							<li><a th:href="@{/index/profile}" title="My account" th:text="#{nav.profile}">Profile</a>
+							</li>
+							<li><a th:href="@{/index/logoff}" th:text="#{new.Logoff}">Logoff</a></li>
+							<li><a th:href="@{/order/list}" th:text="#{new.YourOrders}">Your Orders</a></li>
+							<li th:if="${#authorization.expression('hasRole(''Administrator'')')}"><a
+									th:href="@{/admin/home/index}" th:text="#{new.Administration}">Administration</a></li>
+
+							<li>
+								<a style="font-size:25px;color:red;font-variant: small-caps; " href="" sec:authentication="name"></a>
+
+							</li>
+							 
+					  <script>
+					  function changeLanguage(lang) {
+						$.ajax({
+						  url: "/home/index?lang=" + lang
+						}).then(resp => {
+						  location.reload();
+						});
+					  }
+					  </script>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="header_links float-right d-inline-flex">
+						<ul>
+							<li><a th:href="@{/product/contact}" title="Contact" th:text="#{nav.contact}">Contact</a></li>
+							<li><a th:href="@{/user/wishlist}" title="wishlist" th:text="#{nav.wishlist}">My wishlist</a></li>
+							<li><a th:href="@{/cart/view}" title="My cart" th:text="#{nav.cart}">My cart</a></li>
+						</ul>
+						<ul sec:authorize="isAnonymous()">
+							</li>
+							<!--<li><a th:href="@{/index/wishlist}" title="wishlist" th:text="#{nav.wishlist}">My
+									wishlist</a></li>-->
+							<li><a th:href="@{/index/login}" title="Login" th:text="#{nav.login}">Login</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--header top end-->
+
+		<!--header middel-->
+		<div class="header_middel">
+			<div class="row align-items-center">
+				<!--logo start-->
+				<div class="col-lg-3 col-md-3">
+					<div class="logo">
+						<a th:href="@{home/index}"><img src="assets\img\logo\logo.jpg.png" alt=""></a>
+					</div>
+				</div>
+				<!--logo end-->
+				<div class="col-lg-9 col-md-9">
+					<div class="header_right_info">
+						<div class="search_bar">
+							<form name="key" action="/product/search" method="GET">
+								<select class="input-select" name="key">
+									<option value="nameProduct" th:text="#{new.SearchKeyword}">Search Keyword</option>
+									<option value="categoryProduct" th:text="#{new.SearchGenres}">Search Genres</option>
+								</select>
+								<input style="height:42px" placeholder="Search..." class="input" name="keyword"
+									th:value="${valueSearch}">
+							</form>
+						</div>
+						<div class="shopping_cart">
+								<a>
+								<i class="fa fa-shopping-cart">
+									</i> {{cart.count}} Sản phẩm -	{{cart.amount | number:0}} đ 
+									 <i class="fa fa-angle-down"  ng-show="showMiniCart"></i>
+								</a>
+							<!--mini cart-->
+					<div class="mini_cart" id="miniCart">
+								<div class="cart_item" ng-repeat="item in cart.items">
+									<div class="cart_img">
+										<a th:href="@{|/product/detail/${id}|}"><img
+												th:src="@{|/assets/images/{{item.image}}|}">
+										</a>
+									</div>
+									<div class="cart_info">
+										<a th:href="@{|/product/detail/${id}|}">{{item.name}}</a> <span
+											class="cart_price">{{item.price | number:0}} đ</span> <span
+											class="quantity">Qty: <input ng-change="cart.saveToLocalStorage()"
+												ng-model="item.qty" type="number" min="1" style="width: 50px"></span>
+									</div>
+									<div class="cart_remove">
+										<a title="Remove this item" th:attr="ng-click='cart.remove(item.id)'"> <i
+												class="fa fa-times-circle"></i>
+										</a>
+									</div>
+								</div>
+								<div class="shipping_price">
+									<span th:text="#{Calculateshipping}"> Shipping </span> <span> 0.00 </span>
+								</div>
+								<div class="total_price">
+									<span th:text="#{cart.Total}"> Total </span> <span class="prices">{{cart.amount
+										| number:0}}đ </span>
+								</div>
+								<div class="cart_button">
+									<a th:href="@{/cart/view}" th:text="#{Checkout}"> Check out</a>
+								</div>
+							</div>
+					
+							
+							<!--mini cart end-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--header middel end-->
+		<div class="header_bottom">
+			<div class="row">
+				<div class="col-12">
+					<div th:insert="~{/layout/_menu.html::menu}"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--header end -->
+
+</body>
+
+</html>

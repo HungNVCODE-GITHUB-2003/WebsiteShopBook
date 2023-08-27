@@ -1,0 +1,254 @@
+<div class="container-fluid" sty>
+	<!-- DataTales Example -->
+	<div class="card shadow mb-4">
+		<section class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<!-- /.card -->
+						<div class="card">
+							<div class="card-header bg-primary">
+								<h3 class="card-title">DANH SÁCH TÀI KHOẢN</h3>
+							</div>
+							<!-- /.card-header -->
+							<div class="card-body">
+
+								<button class="btn btn-success m-2" ng-click="exportExcel()">Print
+									to Excel</button>
+								<button class="btn btn-success m-2" ng-click="exportPdf()">Print
+									to PDF</button>
+								<div class="col-md-6 text-left">
+									<div class="filter-group">
+										<label>Tìm Kiếm</label> <input ng-model="searchText.fullname"
+											type="text" class="form-control bg-light "
+											placeholder="Search for name..." aria-label="Search"
+											aria-describedby="basic-addon2">
+
+									</div>
+								</div>
+								<table class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th scope="col" ng-click="sort('id')">Id<span
+												class="glyphicon sort-icon" ng-show="sortKey =='id'"
+												ng-class="{'fa fa-arrow-circle-o-down':reverse,'fa fa-arrow-circle-o-up':!reverse}"></span>
+											</th>
+											<th>Photo</th>
+											<th scope="col" ng-click="sort('username')">Username <span
+												class="glyphicon sort-icon" ng-show="sortKey =='username'"
+												ng-class="{'fa fa-arrow-circle-o-down':reverse,'fa fa-arrow-circle-o-up':!reverse}"></span>
+											</th>
+
+											<!-- <th>Password</th> -->
+											<th scope="col" ng-click="sort('fullname')">Fullname <span
+												class="glyphicon sort-icon" ng-show="sortKey =='fullname'"
+												ng-class="{'fa fa-arrow-circle-o-down':reverse,'fa fa-arrow-circle-o-up':!reverse}"></span>
+											</th>
+											<th>Email</th>
+											<th>Hành động</th><!-- Action< -->
+										</tr>
+									</thead>
+									<tbody>
+										<tr
+											ng-repeat="item in pager.items| filter:searchText | orderBy:sortKey:reverse">
+											<th>{{item.id}}</th>
+											<th>{{item.photo}}</th>
+											<th>{{item.username}}</th>
+											<!-- <th >{{item.password}}</th> -->
+											<th>{{item.fullname}}</th>
+											<th>{{item.email}}</th>
+											<!-- <th></th> -->
+											<td style="text-align: center;">
+												<div class="btn-group btn-group-xs">
+													<button ng-click="edit(item)" class="btn btn-warning"
+														id="btnEdit">Edit</button>
+													<button type="button" class="btn btn-danger"
+														ng-click="delete(item)">Xóa</button>
+												</div>
+
+
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="panel-footer text-center">
+									<button ng-click="pager.first()" class="btn btn-success">
+										<b class="glyphicon glyphicon-hand-up"></b> First
+									</button>
+									<button ng-click="pager.prev()" class="btn btn-success">
+										<b class="glyphicon glyphicon-hand-left"></b> prev
+									</button>
+									<button class="btn btn-success">{{pager.page + 1}} of
+										{{pager.count}}</button>
+									<button ng-click="pager.next()" class="btn btn-success">
+										<b class="glyphicon glyphicon-hand-right"></b> next
+									</button>
+									<button ng-click="pager.last()" class="btn btn-success">
+										<b class="glyphicon glyphicon-hand-down"></b> last
+									</button>
+								</div>
+							</div>
+							<!-- /.card-body -->
+						</div>
+						<!-- /.card -->
+
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+		</section>
+	</div>
+	<div class="card info " id="card-form">
+		<div class="card-header bg-primary">
+			<h3 class="text-white p-0 m-0">QUẢN LÝ TÀI KHOẢN</h3>
+		</div>
+		<form name="myForm">
+		<div class="card-body">
+		<div th:text="${message}" class="text-danger"></div>
+			<div class="row">
+				<div class="col-sm-4 text-center">
+					<label for="image"> <img
+						ng-src="{{'/assets/images/' +form.photo}}"
+						style="max-width: 100%; height: 400px">
+					</label>
+
+				</div>
+				<div class="col-sm-8">
+					<div class="row">
+						<div class="form-group col-sm-6">
+								<div>ID:</div>
+								<input ng-model="form.id" class="form-control" name="id" required>
+								<div class="errortext" ng-show="myForm.id.$dirty && myForm.id.$invalid">
+									<span style="color: red;" ng-show="myForm.id.$error.required">Id không được để
+										trống</span>
+								</div>
+							</div>
+							
+							
+						<div class="form-group col-sm-6">
+								<div>Username:</div>
+								<input ng-model="form.username" class="form-control" name="username" required>
+								<div class="errortext" ng-show="myForm.id.$dirty && myForm.username.$invalid">
+									<span style="color: red;" ng-show="myForm.username.$error.required">Tên không được
+										để trống</span>
+								</div>
+							</div>
+						
+						
+						<div class="form-group col-sm-6">
+								<div>Mật khẩu:</div>
+								<input ng-model="form.password" class="form-control" name="password" type="password"
+									required>
+								<div class="errortext" ng-show="myForm.id.$dirty && myForm.password.$invalid">
+									<span style="color: red;" ng-show="myForm.password.$error.required">Mật khẩu không
+										được để trống</span>
+								</div>
+							</div>
+						
+						
+						
+						<div class="form-group col-sm-6">
+								<div>Họ và tên:</div>
+								<input ng-model="form.fullname" class="form-control" name="fullname" required>
+								<div class="errortext" ng-show="myForm.fullname.$dirty && myForm.fullname.$invalid">
+									<span style="color: red;" ng-show="myForm.fullname.$error.required">Họ và tên không
+										được để trống</span>
+								</div>
+							</div>
+							
+							
+						<div class="form-group col-sm-6">
+								<div>Email:</div>
+								<input ng-model="form.email" class="form-control" name="email" type="email" required>
+								<div class="errortext" ng-show="myForm.id.$dirty && myForm.email.$invalid">
+									<span style="color: red;" ng-show="myForm.email.$error.required">Email không được để
+										trống</span>
+									<span style="color: red;" ng-show="myForm.email.$error.email">Email không
+										đúng định dạng</span>
+								</div>
+							</div>
+						<div class="form-group col-sm-6">
+								<div>Địa chỉ:</div>
+
+								<textarea ng-model="form.address" rows="2" cols="41" name="address" required
+									ng-minlength="6" ng-maxlength="250" required autofocus></textarea>
+								<div class="errortext" ng-show="myForm.address.$dirty && myForm.address.$invalid">
+									<span style="color: red;" ng-show="myForm.address.$error.required">Địa chỉ không
+										được để trống</span>
+									<span style="color: red;" ng-show="myForm.address.$error.minlength">Địa chỉ phải
+										chứa ít nhất 6 ký tự</span>
+									<span style="color: red;" ng-show="myForm.address.$error.maxlength">Địa chỉkhông
+										được lớn hơn 250 ký tự</span>
+
+								</div>
+							</div>
+
+						<div class="form-group col-sm-6">
+								<div>Số điện thoại:</div>
+								<input ng-model="form.phone" id="mobile" class="form-control" name="phone" required>
+								<div class="errortext" ng-show="myForm.phone.$dirty && myForm.phone.$invalid">
+									<span style="color: red;" ng-show="myForm.phone.$error.required">Số điện thoại không
+										được để trống</span>
+								</div>
+							</div>
+						
+						
+						<div class="form-group col-sm-6">
+								<div>Gender:</div>
+								<div class="form-control">
+									<label class="radio-inline"> <input ng-model="form.gender" ng-value="true"
+						type="radio" name="gender" required> Nam
+									</label> <label class="radio-inline"> <input ng-model="form.gender" ng-value="false"
+											type="radio" name="gender" required> Nữ
+									</label>
+									<div class="errortext" ng-show="myForm.gender.$dirty && myForm.gender.$invalid">
+										<span style="color: red;" ng-show="myForm.gender.$error.required">Lựa chọn Giới
+											tính</span>
+										<span style="color: red;" ng-if="!gender">Lựa chọn Giới tính</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+						
+					
+					<div class="form-group col-sm-6">
+								<div>Photo:</div>
+								<input type="file" class="form-control" id="photo"
+									onchange="angular.element(this).scope().imageChanged(this.files)">
+							</div>
+							<div class="form-group col-sm-6">
+								<div>Date:</div>
+								<input ng-model="form.date" type="date" class="form-control" name="date" required>
+								<div class="errortext" ng-show="myForm.date.$dirty && myForm.date.$invalid">
+									<span style="color: red;" ng-show="myForm.date.$error.required">Chọn ngày
+										tháng</span>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+				<div class="panel-footer text-left p-3">
+					<button id="btn-create" ng-click="create()" class="btn btn-success">
+						Tạo
+					</button>
+					<button id="btn-update" disabled="disabled" ng-click="update()" class="btn btn-primary">
+						<b class="glyphicon glyphicon-save"></b> Cập nhật
+					</button>
+					<button id="btn-delete" disabled="disabled" ng-click="delete(form)" class="btn btn-danger">
+						<b class="glyphicon glyphicon-trash"></b> Xóa
+					</button>
+					<button id="btn-reset" ng-click="reset()" class="btn btn-warning">
+						<b class="glyphicon glyphicon-refresh"></b> Làm mới
+					</button>
+				</div>
+			</div>
+		</div>
+		</form>
+	</div>
+</div>
+<!-- /.container-fluid -->

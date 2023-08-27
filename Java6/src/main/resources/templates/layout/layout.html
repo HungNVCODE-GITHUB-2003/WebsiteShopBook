@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(view)">
+
+<head>
+<base href="/" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<!-- All css here -->
+        <link type="text/css" rel="stylesheet" href="..\assets\css\bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" href="..\assets\css\bootstrap.min.css.map">
+        <link type="text/css" rel="stylesheet" href="..\assets\css\plugin.css">
+        <link type="text/css" rel="stylesheet" href="..\assets\css\bundle.css">
+        <link type="text/css" rel="stylesheet" href="..\assets\css\style.css">
+        <link type="text/css" rel="stylesheet" href="..\assets\css\responsive.css">
+        <script type="text/javascript" src="..\assets\js\vendor\modernizr-2.8.3.min.js"></script>
+        
+          <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        
+<title>Homepage</title>
+</head>
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+	<div class="pos_page">
+		<div class="container">
+			<div class="pos_page_inner">
+				<nav th:insert="~{/layout/_header.html::navbar}"></nav>	
+				<main th:replace="${view}"></main>		
+			</div>
+		</div>
+	</div>
+	
+	<div th:insert="~{/layout/_footer.html::footer}"></div>
+	
+	  <script type="text/javascript" src="..\assets\js\shopping-cart-app.js"></script>
+    <script type="text/javascript" src="..\assets\js\vendor\jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="..\assets\js\popper.js"></script>
+    <script type="text/javascript" src="..\assets\js\bootstrap.min.js"></script>
+    <script type="text/javascript" src="..\assets\js\bootstrap.min.js.map"></script>
+    <script type="text/javascript" src="..\assets\js\ajax-mail.js"></script>
+    <script type="text/javascript" src="..\assets\js\plugins.js"></script>
+    <script type="text/javascript" src="..\assets\js\main.js"></script>
+
+    
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '{your-app-id}',
+      cookie     : true,
+      xfbml      : true,
+      version    : '{api-version}'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<script type="text/javascript">
+			$(document).ready(function () {
+				$('body').on('click', '.checkmobile', function () {
+					var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+					var mobile = $('#mobile').val();
+					if (mobile !== '') {
+						if (vnf_regex.test(mobile) == false) {
+							alert('Số điện thoại của bạn không đúng định dạng!');
+						} else {
+							alert('Số điện thoại của bạn hợp lệ!');
+						}
+					} else {
+						alert('Bạn chưa điền số điện thoại!');
+					}
+				});
+			});
+		</script>
+
+
+</body>
+</html>

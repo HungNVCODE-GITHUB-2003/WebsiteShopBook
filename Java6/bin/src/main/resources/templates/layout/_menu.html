@@ -1,0 +1,136 @@
+
+<html xmlns="http://www.thymeleaf.org">
+<div class="main_menu_inner" th:fragment="menu">
+	<div class="main_menu d-none d-lg-block">
+		<nav>
+			<ul>
+				<li class="active"><a th:href="@{home/index}">Home</a></li>
+				<li><a th:href="@{product/shop_list}">shop</a>
+					<div class="mega_menu " style="width: 1000px;">
+						<h3>
+							<a href="#">Sách Trong Nước</a>
+						</h3>
+						<div class="mega_top fix p-3">
+							<div class="mega_items p-3">
+								<h3>
+									<a href="#">Văn học</a>
+								</h3>
+								<ul>
+									<li><a th:href="@{/admin/index}">Tiểu Thuyết</a></li>
+									<li><a href="#">Truyện Ngắn - Tản Văn</a></li>
+									<li><a href="#">Light Novel</a></li>
+									<li><a href="#">Truyện Trinh Thám-Kiếm Hiệp</a></li>
+								</ul>
+							</div>
+							<div class="mega_items p-3">
+								<h3>
+									<a href="#">Kinh Tế</a>
+								</h3>
+								<ul>
+									<li><a href="#">Nhân vật-Bài Học Kinh doanh</a></li>
+									<li><a href="#">Quản Trị - Lãnh Đạo</a></li>
+									<li><a href="#">Marketing - Bán Hàng</a></li>
+									<li><a href="#">Khởi Nghiệp - Làm Giàu</a></li>
+								</ul>
+							</div>
+							<div class="mega_items p-3">
+								<h3>
+									<a href="#">Tâm lý - Kỹ năng sống</a>
+								</h3>
+								<ul>
+									<li><a href="#">Kỹ Năng Sống</a></li>
+									<li><a href="#">Rèn Luyện Nhân Cách</a></li>
+									<li><a href="#">Tâm Lý</a></li>
+									<li><a href="#">Sách cho tuổi mới lớn</a></li>
+								</ul>
+							</div>
+							<div class="mega_items p-3">
+								<h3>
+									<a href="#">Nuôi Dạy Con</a>
+								</h3>
+								<ul>
+									<li><a href="#">Cẩm Nang Làm Cha Mẹ</a></li>
+									<li><a href="#">Phương Pháp Giáo Dục Trẻ</a></li>
+									<li><a href="#">Phát Triển Trí Tuệ Cho Trẻ</a></li>
+									<li><a href="#">Phát Triển Kỹ Năng Cho Trẻ</a></li>
+
+								</ul>
+							</div>
+							<div class="mega_items p-3">
+								<h3>
+									<a href="#">Sách Thiếu Nhi</a>
+								</h3>
+								<ul>
+									<li><a href="#">Manga - Comic</a></li>
+									<li><a href="#">Kiến thức bách khoa</a></li>
+									<li><a href="#">Sách Tranh Kỹ Năng Sống</a></li>
+									<li><a href="#">Vừa Học Vừa Chơi Với Trẻ</a></li>
+								</ul>
+							</div>
+							<div class="mega_items p-3">
+								<h3>
+									<a href="#">Tiểu Sử Hồi Ký</a>
+								</h3>
+								<ul>
+									<li><a href="#">Câu Chuyện Cuộc Đời</a></li>
+									<li><a href="#">Chính Trị</a></li>
+									<li><a href="#">Kinh Tế</a></li>
+									<li><a href="#">Nghệ Thuật - Giải Trí</a></li>
+								</ul>
+							</div>
+							<div class="mega_items p-3">
+								<h3>
+									<a href="#">Giáo khoa-Tham khảo</a>
+								</h3>
+								<ul>
+									<li><a href="#">Sách Giáo Khoa</a></li>
+									<li><a href="#">Sách Tham Khảo</a></li>
+									<li><a href="#">Luyện Thi THPT Quốc Gia</a></li>
+									<li><a href="#">Mẫu Giáo</a></li>
+								</ul>
+							</div>
+							<div class="mega_items p-3">
+								<h3>
+									<a href="#">Sách học ngoại ngữ</a>
+								</h3>
+								<ul>
+									<li><a href="#">Tiếng Anh</a></li>
+									<li><a href="#">Tiếng Nhật</a></li>
+									<li><a href="#">Tiếng Hoa</a></li>
+									<li><a href="#">Tiếng Hàn</a></li>
+								</ul>
+							</div>
+						</div>
+
+					</div></li>
+			
+
+				<li><a th:href="@{/index/login}">My Account</a>
+					<div class="mega_menu jewelry">
+						<div class="mega_items jewelry">
+							<ul>
+								<li><a th:href="@{/index/login}">Sign in</a></li>
+								<li><a th:href="@{/index/register}">Sign out</a></li>
+								<li><a th:href="@{/index/forgot}">Register</a></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+
+
+				<li><a th:href="@{/product/blog}">blog</a>
+					
+					</li>
+					
+					<li><a th:href="@{/product/portfolio}">Portfolio</a></li>
+				<li><a th:href="@{/product/contact}">contact us</a>
+
+				</li>
+
+			</ul>
+		</nav>
+	</div>
+
+</div>
+
+</html>

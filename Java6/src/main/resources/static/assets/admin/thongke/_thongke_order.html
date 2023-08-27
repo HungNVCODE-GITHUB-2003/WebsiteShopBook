@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Thống kê thanh toán</title>
+</head>
+<body>
+
+	<div class="row">
+		<ol class="breadcrumb">
+			<li><a href="#"> <em class="fa fa-home"></em>
+			</a></li>
+			<li class="active">Thống kê thanh toán</li>
+		</ol>
+	</div>
+
+
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+
+				<div class="panel-body">
+					<div class="col-md-12">
+						<div class="table-responsive">
+							<div class="table-wrapper">
+								<table class="table table-striped table-hover">
+									<thead>
+										<tr>
+											<th scope="col" ng-click="sort('group.book.name')">Tên
+												sản phẩm <span class="glyphicon sort-icon"
+												ng-show="sortKey =='group.book.name'"
+												ng-class="{'fa fa-arrow-circle-o-down':reverse,'fa fa-arrow-circle-o-up':!reverse}"></span>
+											</th>
+											<th scope="col">Người mua</th>
+											<th scope="col">Ngày mua</th>
+											<th scope="col">Giá tiền</th>
+											<th scope="col">Số lượng</th>
+											<th scope="col">Tổng thành tiền</th>
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr
+											ng-repeat="item in pager.itemsThongKeOrder | orderBy:sortKey:reverse">
+											<td>{{item.group.book.name}}</td>
+											<td>{{item.group.order.account.username}}</td>
+											<td>{{item.group.order.date}}</td>
+											<td>{{item.group.price | number : 0}}đ</td>
+											<td>{{item.count}}</td>
+											<td>{{item.sum | number :0}}đ</td>
+										</tr>
+									</tbody>
+									
+									<tfoot>
+										<tr style="font-size: 25px">
+											<td colspan="5">Tổng:</td>
+											<div >
+											<td style="color: red">{{items | number: 0}}đ</td></div>
+											
+										</tr>
+									</tfoot>
+								</table>
+									
+									
+								<div class="panel-footer text-center">
+									<button ng-click="pager.first()" class="btn btn-success">
+										<b class="glyphicon glyphicon-hand-up"></b> First
+									</button>
+									<button ng-click="pager.prev()" class="btn btn-success">
+										<b class="glyphicon glyphicon-hand-left"></b> prev
+									</button>
+									<button class="btn btn-success">{{pager.page + 1}} of
+										{{pager.count}}</button>
+									<button ng-click="pager.next()" class="btn btn-success">
+										<b class="glyphicon glyphicon-hand-right"></b> next
+									</button>
+									<button ng-click="pager.last()" class="btn btn-success">
+										<b class="glyphicon glyphicon-hand-down"></b> last
+									</button>
+								</div>
+							</div>
+							<dir-pagination-controls></dir-pagination-controls>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.panel-->
+
+
+		</div>
+
+		<!-- /.panel-->
+	</div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<div class="panel panel-default">
+	<div class="panel-heading">ACCOUT EDITION</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-sm-4 text-center">
+				<label for="image"> <img 
+					ng-src="{{'/assets/images/' +form.photo}}"
+					style="max-width: 100%; height: 200px">
+				</label>
+			</div>
+			<div class="col-sm-8">
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<div>ID:</div>
+						<input ng-model="form.id" class="form-control"> 
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Username:</div>
+						<input ng-model="form.username" class="form-control"> 
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Password:</div>
+						<input ng-model="form.password" class="form-control">
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Fullname:</div>
+						<input ng-model="form.fullname" class="form-control">
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Email:</div>
+						<input ng-model="form.email" class="form-control">
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Address:</div>
+	
+						<textarea ng-model="form.address" rows="2" cols="62"></textarea>
+					</div>
+					
+					<div class="form-group col-sm-6">
+						<div>Phone:</div>
+						<input ng-model="form.phone" class="form-control">
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Gender:</div>
+						<div class="form-control">
+							<label class="radio-inline"> 
+								<input ng-model="form.gender" ng-value="true" type="radio" name="gender" > Yes
+							</label>
+							<label class="radio-inline"> 
+								<input ng-model="form.gender"  ng-value="false" type="radio" name="gender" > No
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<div>Photo:</div>
+						<input type="file" class="form-control" id="photo"
+						onchange="angular.element(this).scope().imageChanged(this.files)">
+					</div>
+					<div class="form-group col-sm-6">
+						<div>Date:</div>
+						<input ng-model="form.date" type="date" class="form-control" >
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<div class="panel-footer text-center">
+		<button ng-click="create()"  class="btn btn-primary">
+			<b class="glyphicon glyphicon-plus"></b> Create
+		</button>
+		<button ng-click="update()"  class="btn btn-success">
+			<b class="glyphicon glyphicon-save"></b> Update
+		</button>
+		<button ng-click="delete(form)"  class="btn btn-danger">
+			<b class="glyphicon glyphicon-trash"></b> Delete
+		</button>
+		<button ng-click="reset()"  class="btn btn-info">
+			<b class="glyphicon glyphicon-refresh"></b> Reset
+		</button>
+	</div>
+</div>

@@ -1,0 +1,54 @@
+<html xmlns="http://www.thymeleaf.org" >
+<div class="main_menu_inner" th:fragment="menu">
+	<div class="main_menu d-none d-lg-block">
+		<nav>
+			<ul id="accordionSidebar" >
+				<li ng-class="{ 'active': isActive('/home/index') }"><a th:href="@{home/index}"
+						th:text="#{nav.home}">Home</a></li>
+				<li ng-class="{ 'active': isActive('/product/shop_list')}"><a th:href="@{product/shop_list}"
+						th:text="#{nav.shop}">Shop</a>
+					<div class="mega_menu " style="width: 1000px;">
+						<h3>
+							<a href="#" th:text="#{nav.DomesticBooks}">Sách trong Nước</a>
+						</h3>
+						<div class="mega_top fix ">
+							<div class="mega_items" th:each="c:${cates}">
+								<ul>
+									<li> <a th:href="@{|/product/shop_list?cid=${c.id}|}">[[${c.genres}]]</a></li>
+								</ul>
+							</div>										
+						</div>
+
+					</div>
+				</li>
+				<li ng-class="{ 'active': isActive('/index/profile')}"><a th:href="@{/index/profile}"
+						th:text="#{nav.MyAccount}">My Account</a>
+					<div class="mega_menu jewelry">
+						<div class="mega_items jewelry">
+							<ul>
+								<li ng-class="{ 'active': isActive('/index/login')}"><a th:href="@{/index/login}"
+										th:text="#{nav.signin}">Sign in</a></li>
+								<li ng-class="{ 'active': isActive('/index/logoff')}"><a th:href="@{/index/logoff}"
+										th:text="#{nav.signout}">Sign out</a></li>
+								<li ng-class="{ 'active': isActive('/index/forgot')}"><a th:href="@{/index/register}"
+										th:text="#{nav.register}" v>Register</a></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li ng-class="{ 'active': isActive('/product/blog')}"><a th:href="@{/product/blog}"
+						th:text="#{nav.about}">Blog</a>
+				</li>
+				<li ng-class="{ 'active': isActive('/product/portfolio')}"><a th:href="@{/product/portfolio}"
+						th:text="#{nav.Portfolio}">Portfolio</a></li>
+				<li ng-class="{ 'active': isActive('/product/contact')}"><a th:href="@{/product/contact}"
+						th:text="#{nav.contact}">Contact us</a>
+				</li>
+				
+			</ul>
+		</nav>
+	</div>
+
+</div>
+
+</html>

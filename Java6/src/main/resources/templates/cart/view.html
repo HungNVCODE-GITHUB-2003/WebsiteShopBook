@@ -1,0 +1,139 @@
+﻿<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/layout :: dynamic(~{::body})}">
+
+<body>
+
+
+
+	<!--breadcrumbs area start-->
+	<div class="breadcrumbs_area">
+		<div class="row">
+			<div class="col-12">
+				<div class="breadcrumb_content">
+					<ul>
+						<li><a href="index.html">home</a></li>
+						<li><i class="fa fa-angle-right"></i></li>
+						<li>Shopping Cart</li>
+					</ul>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--breadcrumbs area end-->
+
+
+	
+		<div class="row" ng-if="cart.items.length == 0">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-body cart">
+						<div class="col-sm-12 empty-cart-cls text-center">
+							<img src="https://i.imgur.com/dCdflKN.png" width="130"
+								height="130" class="img-fluid mb-4 mr-3">
+							<h3>
+								<strong>Giỏ hàng của bạn trống</strong>
+							</h3>
+							<h4>Hãy thêm sản phẩm sau đó quay lại ^^</h4>
+							<a href="/product/shop_list"
+								class="btn btn-success cart-btn-transform m-3" data-abc="true">Tiếp
+								tục mua hàng</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	<!--shopping cart area start -->
+	<div class="shopping_cart_area " ng-if="cart.items.length >0 " >
+		<form action="#">
+			<div class="row">
+				<div class="col-12">
+					<div class="table_desc">
+						<div class="cart_page table-responsive">
+							<table>
+								<thead>
+									<tr>
+										<th class="product_remove" th:text="#{cart.Delete}">Delete</th>
+										<th class="product_thumb" th:text="#{cart.Image}">Image</th>
+										<th class="product_name" th:text="#{cart.Product}">Product</th>
+										<th class="product-price" th:text="#{cart.Price}">Price</th>
+										<th class="product_quantity" th:text="#{cart.Quantity}">Quantity</th>
+										<th class="product_total" th:text="#{cart.Total}">Total</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in cart.items">
+										<td class="product_remove"><a
+											th:attr="ng-click='cart.remove(item.id)'"><i
+												class="fa fa-trash-o"></i></a></td>
+										<td class="product_thumb"><a href="#">
+											<img th:src="@{|/assets/images/{{item.image}}|}" style="width: 100px;">
+											</a></td>
+										<td class="product_name"><a href="#">{{item.name}}</a></td>
+										<td class="product-price">{{item.price | number :0}} đ</td>
+										<td class="product_quantity"><input
+											ng-change="cart.saveToLocalStorage()" ng-model="item.qty"
+											type="number" min="1" style="width: 50px"></td>
+										<td class="product_total">{{item.qty*item.price |
+											number:0}} đ</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="checkout_btn">
+						<a th:href="@{product/shop_list}" th:text="#{updatecart}">Update cart</a>
+					</div>
+				</div>
+			</div>
+			<!--coupon code area start-->
+			<div class="coupon_area">
+				<div class="row">
+					<div class="col-lg-6 col-md-6">
+						<div class="coupon_code">
+							<h3 th:text="#{Coupon}">Coupon</h3>
+							<div class="coupon_inner">
+								<p th:text="#{Enteryourcouponcodeifyouhaveone}">Enter your coupon code if you have one.</p>
+								<input placeholder="Coupon code" type="text">
+								<button type="submit" th:text="#{Applycoupon}">Apply coupon</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6">
+						<div class="coupon_code">
+							<h3 th:text="#{CartTotals }">Cart Totals</h3>
+							<div class="coupon_inner">
+								<div class="cart_subtotal">
+									<p th:text="#{Subtotal}">Subtotal</p>
+									<p class="cart_amount">{{cart.amount}} đ</p>
+								</div>
+								
+								<div class="cart_subtotal">
+									<p th:text="#{FlatRate }"> Flat Rate </p>
+									<p class="cart_amount">{{cart.amount | number:0}} đ</p>
+								</div>
+								<!-- <div class="cart_subtotal">
+									<p th:text="#{chk.Shipping}"> Calculate shipping </p>
+									<p class="cart_amount"></p>
+								</div> -->
+								<div class="cart_subtotal">
+									<p th:text="#{cart.Total}" >Total</p>
+									<p class="cart_amount">{{cart.amount | number:0}} đ</p>
+								</div>
+								<div class="checkout_btn">
+									<a th:href="@{/order/checkout}" href="#" th:text="#{ProceedtoCheckout}">Proceed to Checkout</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--coupon code area end-->
+		</form>
+	</div>
+	<!--shopping cart area end -->
+	
+</body>
+</html>

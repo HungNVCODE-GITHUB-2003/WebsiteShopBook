@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(view)">
+
+<head>
+<base href="/" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<!-- All css here -->
+        <link rel="stylesheet" href="..\assets\css\bootstrap.min.css">
+        <link rel="stylesheet" href="..\assets\css\plugin.css">
+        <link rel="stylesheet" href="..\assets\css\bundle.css">
+        <link rel="stylesheet" href="..\assets\css\style.css">
+        <link rel="stylesheet" href="..\assets\css\responsive.css">
+        <script src="..\assets\js\vendor\modernizr-2.8.3.min.js"></script>
+        
+          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        
+<title>Homepage</title>
+</head>
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+	<div class="pos_page">
+		<div class="container">
+			<div class="pos_page_inner">
+				<nav th:insert="~{/layout/_header.html::navbar}"></nav>	
+				<main th:replace="${view}"></main>		
+			</div>
+		</div>
+	</div>
+	
+	<div th:insert="~{/layout/_footer.html::footer}"></div>
+	
+	 <script src="/assets/js/shopping-cart-app.js"></script>
+	
+	    
+    <script src="..\assets\js\vendor\jquery-1.12.0.min.js"></script>
+    <script src="..\assets\js\popper.js"></script>
+    <script src="..\assets\js\bootstrap.min.js"></script>
+    <script src="..\assets\js\ajax-mail.js"></script>
+    <script src="..\assets\js\plugins.js"></script>
+    <script src="..\assets\js\main.js"></script>
+</body>
+</html>

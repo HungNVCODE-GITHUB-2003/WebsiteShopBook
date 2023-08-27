@@ -1,0 +1,64 @@
+﻿<!doctype html>
+<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/layout::dynamic(~{::body})}">
+
+<body>
+	<!-- customer login start -->
+	<div class="customer_login">
+		<div class="row">
+			<!-- login area start -->
+			<div class="col-lg-12 col-md-12">
+				<div class="account_form">
+					<h2 th:text="#{login.login}">login</h2>
+					<form th:action="@{/home/index}" method="post">
+						<i class="pull-left text-danger" style="font-size:20px" th:text="${message}"></i> <br> <br>
+						<p>
+							<label th:text="#{login.Usernameoremail}">Username or email <span>*</span></label> <input
+								type="text" name="username">
+						</p>
+						<p>
+							<label th:text="#{login.password}">Passwords <span>*</span></label> <input type="password"
+								name="password">
+						</p>
+						<br>
+						<div class="login_submit">
+							<button type="submit" th:text="#{login.login}">login</button>
+							<label for="remember">
+								<input id="remember" type="checkbox" th:text="#{login.remember}">
+							</label>
+							<br>
+							
+							<a style="font-size:15px" th:href="@{/index/register}" th:text="#{login.register}"> Register ? </a>   
+						 	<a style="font-size:15px" th:href="@{/index/forgotpassword}" th:text="#{login.lostyourpassword}"> Lost your
+								password ? </a>
+						</div>
+						<p th:if="${loginError}" style="color: red;">${loginError}</p>
+						<br>
+						<div class="footer_social">
+								<ul>
+									<li><a href="/oauth2/authorization/facebook"><i
+											class="fa fa-facebook"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="/oauth2/authorization/google"><i
+											class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+									<li><a class="pinterest" href="#"><i
+											class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-wifi"
+											aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+						
+						
+					</form>
+				</div>
+			</div>
+			<!-- login area end -->
+		</div>
+	</div>
+	<!-- customer login end -->
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous"
+		src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v17.0&appId=1121506385248423&autoLogAppEvents=1"
+		nonce="ovXGYysT"></script>
+</body>
+
+</html>

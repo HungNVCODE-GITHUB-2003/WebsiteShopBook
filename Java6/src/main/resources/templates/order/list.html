@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/layout :: dynamic(~{::body})}">
+
+<head>
+    <meta charset="utf-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+
+    <div class="breadcrumbs_area">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="index.html">home</a></li>
+                        <li><i class="fa fa-angle-right"></i></li>
+                        <li>Order List</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main>
+        <div class="card">
+            <div th:text="#{new.YOURORDERSPURCHASED}" class="card-header">YOUR ORDERS PURCHASED</div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th th:text="#{new.NO}">No.</th>
+                        <th th:text="#{new.OrderNo}">Order No.</th>
+                        <th th:text="#{new.OrderDate}">Order Date.</th>
+                        <th th:text="#{new.ShippingAddress}">Shipping Address</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="order, state:${orders}">
+                        <td>[[${state.index}]]</td>
+                        <td>[[${order.id}]]</td>
+                        <td>[[${order.date}]]</td>
+                        <td>[[${order.address}]]</td>
+
+                        <td>
+                            <a th:href="@{|/order/detail/${order.id}|}" th:text="#{new.Search}" class="btn btn-primary">Search</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,216 @@
+
+<div class="container-fluid" sty>
+
+	<div class="card shadow mb-4">
+		<div class="card-header py-3">
+			<div class="card-header bg-primary">
+				<h3 class="text-white p-0 m-0">DANH MỤC SÁCH</h3>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="filter-group">
+						<label>Lọc</label> <select class="form-control"
+							ng-init="searchText.available = true"
+							ng-model="searchText.available">
+							<option ng-value="">Tất cả</option>
+							<option ng-value="true">Còn hàng</option>
+							<option ng-value="false">Hết hàng</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="filter-group">
+					<label>Tìm Kiếm</label> 
+							<input ng-model="searchText.name" type="text"
+								class="form-control bg-light "
+								placeholder="Tìm kiếm..." aria-label="Search"
+								aria-describedby="basic-addon2">
+							
+						</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card-body">
+			<button class="btn btn-success m-2" ng-click="exportExcel()">In ra Excel</button>
+			<button class="btn btn-success m-2" ng-click="exportPdf()">In ra PDF</button>
+			<div class="table-responsive">
+				<table  class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col" ng-click="sort('id')">Id <span
+								class="glyphicon sort-icon" ng-show="sortKey =='id'"
+								ng-class="{'fa fa-arrow-circle-o-down':reverse,'fa fa-arrow-circle-o-up':!reverse}"></span>
+							</th>
+							<th scope="col" ng-click="sort('name')">Name <span
+								class="glyphicon sort-icon" ng-show="sortKey =='name'"
+								ng-class="{'fa fa-arrow-circle-o-down':reverse,'fa fa-arrow-circle-o-up':!reverse}"></span>
+							</th>
+							<th scope="col" ng-click="sort('price')">Price<span
+								class="glyphicon sort-icon" ng-show="sortKey =='price'"
+								ng-class="{'fa fa-arrow-circle-o-down':reverse,'fa fa-arrow-circle-o-up':!reverse}"></span>
+							</th>
+							<th scope="col" ng-click="sort('publication_date')">Date <span
+								class="glyphicon sort-icon" ng-show="sortKey =='publication_date'"
+								ng-class="{'fa fa-arrow-circle-o-down':reverse,'fa fa-arrow-circle-o-up':!reverse}"></span>
+							</th>							
+							<th>Image</th>
+							<th scope="col" ng-click="sort('genres.genres')">Genres<span
+								class="glyphicon sort-icon" ng-show="sortKey =='genres.genres'"
+								ng-class="{'fa fa-arrow-circle-o-down':reverse,'fa fa-arrow-circle-o-up':!reverse}"></span>
+							</th>
+							<th>Available</th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr ng-repeat="item in pager.items| filter:searchText| orderBy:sortKey:reverse">
+							<th>{{item.id}}</th>
+							<th style="width: 400px">{{item.name}}</th>
+							<th>{{item.price | number:0}}</th>
+							<th>{{item.publication_date | date:'dd-MM-yyyy'}}</th>
+							<th>{{item.image}}</th>
+							<th>{{item.genres.genres}}</th>
+							<th>{{item.available?'Còn Hàng':'Hết Hàng'}}</th>
+							<td style="text-align: center;">
+
+								<div class="btn-group btn-group-xs">
+									<button ng-click="edit(item)" class="btn btn-warning"
+										id="btnEdit">Chỉnh sửa</button>
+									<button type="button" class="btn btn-danger"
+										ng-click="delete(item)">Xóa</button>
+								</div>
+
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="panel-footer text-center">
+					<button ng-click="pager.first()" class="btn btn-success">
+						<b class="glyphicon glyphicon-hand-up"></b> Trang đầu
+					</button>
+					<button ng-click="pager.prev()" class="btn btn-success">
+						<b class="glyphicon glyphicon-hand-left"></b> Trở về
+					</button>
+					<button class="btn btn-success">{{pager.page + 1}} trong
+						{{pager.count}}</button>
+					<button ng-click="pager.next()" class="btn btn-success">
+						<b class="glyphicon glyphicon-hand-right"></b> Tiếp tục
+					</button>
+					<button ng-click="pager.last()" class="btn btn-success">
+						<b class="glyphicon glyphicon-hand-down"></b> Trang cuối
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<form name="myForm" class="was-validated">
+	<div class="card  info" id="card-form">
+		<div class="card-header bg-primary">
+			<h3 class="text-white p-0 m-0">QUẢN LÝ SẢN PHẨM</h3>
+		</div>
+		<div class="card-body">
+			<div class="row">
+				<div class="col-sm-4 text-center">
+					<label for="image"> <img
+						ng-src="{{'/assets/images/' +form.image}}"
+						style="max-width: 100%; height: 400px">
+					</label>
+				</div>
+				<div class="col-sm-8">
+					<div class="row">
+						<div class="form-group col-sm-6">
+								<div>ID:</div>
+								<input name="id" ng-model="form.id" class="form-control is-invalid" required>
+								
+							</div>
+						<div class="form-group col-sm-6">
+							<div>Tên sách:</div>
+							<input ng-model="form.name" class="form-control">
+						</div>
+						<div class="form-group col-sm-6">
+							<div>Giá:</div>
+							<input ng-model="form.price" class="form-control">
+						</div>
+						<div class="form-group col-sm-6">
+							<div>Ngày nhập kho:</div>
+							<input ng-model="form.author" class="form-control">
+						</div>
+						<div class="form-group col-sm-6">
+							<div>Số trang:</div>
+							<input ng-model="form.pagecount" class="form-control">
+						</div>
+						<div class="form-group col-sm-6">
+							<div>Nhà xuất mục:</div>
+							<input ng-model="form.publisher" class="form-control">
+						</div>
+						<div class="form-group col-sm-6">
+							<div>Hàng tồn:</div>
+							<input ng-model="form.stock_quantity" class="form-control">
+						</div>
+						<div class="form-group col-sm-6">
+							<div>Mô tả:</div>
+							<textarea ng-model="form.description" rows="2" cols="41"></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-sm-6">
+							<div>Hình ảnh:</div>
+							<input type="file" class="form-control" id="image"
+								onchange="angular.element(this).scope().imageChanged(this.files)">
+						</div>
+						<div class="form-group col-sm-6">
+							<div>Loại:</div>
+							<select ng-model="form.genres.id" class="form-control">
+								<option ng-repeat="c in cates" ng-value="c.id">{{c.genres}}</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-sm-6">
+							<div>Ngày tạo:</div>
+							<input ng-model="form.publication_date" type="date"
+								class="form-control" id="image">
+						</div>
+						<div class="form-group col-sm-6">
+							<div>Trạng thái:</div>
+							<div class="form-control">
+								<label class="radio-inline"> <input
+									ng-model="form.available" ng-value="true" type="radio"
+									name="available"> Còn hàng
+								</label> <label class="radio-inline"> <input
+									ng-model="form.available" ng-value="false" type="radio"
+									name="available"> Hết hàng
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel-footer text-center p-3">
+					<button id="btn-create" ng-click="create()" class="btn btn-success">
+						Tạo</button>
+					<button id="btn-update" disabled="disabled" ng-click="update()"
+						class="btn btn-primary">
+						<b class="glyphicon glyphicon-save"></b> Cập nhật
+					</button>
+					<button id="btn-delete" disabled="disabled" ng-click="delete(form)"
+						class="btn btn-danger">
+						<b class="glyphicon glyphicon-trash"></b> Xóa
+					</button>
+					<button id="btn-reset" ng-click="reset()" class="btn btn-warning">
+						<b class="glyphicon glyphicon-refresh"></b> Làm mới
+					</button>
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</form>
+
+</div>
+
+</div>
